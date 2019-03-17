@@ -37,8 +37,10 @@
                                                     first_name VARCHAR(30) NOT NULL,
                                                     last_name VARCHAR(30) NOT NULL,
                                                     email VARCHAR(50),
-                                                    reg_Date TIMESTAMP,
-                                                    mobile_n0 INT(10) UNSIGNED
+                                                    reg_Date DATE,
+                                                    mobile_no VARCHAR(10),
+                                                    usr_password  VARCHAR(128) 
+
                                                  )";
             $conn->exec($sql_query);
             echo"<br/>Table create sucessfully";                                     

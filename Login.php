@@ -46,7 +46,8 @@
                 <label for="usr_pass">Password</label>
                 <input name="usr_pass" id="usr_pass" type="password" placeholder="Password" required >
                 </div>        
-                <input type="submit" value="Login">    
+                <input type="submit" value="Login">   
+                </div> 
         </div>
     
     </body>
