@@ -53,7 +53,7 @@
         
         if(empty($usr_passErr) && empty($emailErr))
         {
-            $sql="SELECT id ,usr_password,email FROM User_info WHERE email= :email ";
+            $sql="SELECT id ,usr_password,email FROM user_details WHERE email= :email ";
 
             if($stmt=$con->prepare($sql))
                 {
@@ -130,7 +130,7 @@
             box-sizing: border-box;
             }
 
-           input[type=email]{           
+           input[type=text]{           
             width: 500px;
             padding: 12px;
             border: 1px solid #ccc;
@@ -186,7 +186,7 @@
             <fieldset class="logon_font">
                 <div class="a">
                     <label for="email">Email</label>
-                    <input name="email" id="email" type="email" placeholder="Enter email Address" required >
+                    <input name="email" id="email" type="text" placeholder="Enter email Address" required >
                     <span class="error">*<?php echo $emailErr;?></span>
                 </div>
                 <div>
