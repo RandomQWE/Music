@@ -1,21 +1,21 @@
 <?php
+    session_start();
     $title="login";
     include 'header.php'
     
     
-    session_start();
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]==true){
+    
+    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]===true){
             header("location:welcome.php");
             exit;
-    
+    }
         $servername="localhost";
         $username="root";
         $password="";
         $dbname="User_info";    
         $dsn="mysql:host=$servername;dbname=$dbname";
         
-        $emailErr= $email= $usr_pass= $usr_pass= "";
-        
+        $emailErr= $email= $usr_pass= $usr_passErr= "";
         
         
         $con=new PDO($dsn,$username,$password);
@@ -42,11 +42,64 @@
             }
             
 
-            if(empty($_POST["usr_pass"]))
+            if(empty($_POST["usr_pass"])){
+                $usr_passErr="Password is required";
+            }
+            else
+            {
+                $usr_pass=test_input($_POST["usr_pass"]);
+            }
+            
         
         
+        
+        
+        
+        
+        
+        
+        
+        if(empty($usr_passErr))&&empty($emailErr)){
+            $sql="SELECT id ,usr_password,email FROM User_info WHERE email=:email ";
+
+            if($stmt=$con->prepare($sql))
+                {
+                    $stmt->bindParam(":email",$param_email,PDO::PARAM_STR);
+
+                    $param_email=trim($_POST["username"]);
+
+                    if($stmt->execute())
+                        {
+                            if($stmt->rowCount()== 1)
+                                {
+                                        if($row=$stmt->fetch(){
+                                            $id=$row["id"];
+                                            $email=$row["email"];
+                                            $hashed_password=$row["usr_password"];
+
+                                            if(password_verify($usr_password,$hashed_password))
+                                                {
+                                                    session_start();
+                                                    $_SESSION["id"]=$id;
+                                                    $_SESSION["email"]=$email;
+                                                    $_SESSION["logedin"]=true;
+
+                                                    header("location: welcome.php");
+                                                
+                                                }
+                                    }
+                                }
+                            else{
+                                $usr_passErr="Password is not valid";
+                            }    
+                        }
+
+                }
+            unset($stmt);
+
         }
 
+        unset($con);
 
 
 
@@ -137,10 +190,12 @@
                 <div class="a">
                     <label for="username">Username</label>
                     <input name="username" id="username" type="email" placeholder="Enter username or email Address" required >
+                    <span class="error">*<?php echo $emailErr;?></span>
                 </div>
                 <div>
                 <label for="usr_pass">Password</label>
                 <input name="usr_pass" id="usr_pass" type="password" placeholder="Password" required >
+                <span class="error">*<?php echo $usr_passErr ;?></span>
                 </div>        
                 <input type="submit" value="Login">   
                 </div> 

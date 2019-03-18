@@ -36,7 +36,7 @@
                                                     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                                                     first_name VARCHAR(30) NOT NULL,
                                                     last_name VARCHAR(30) NOT NULL,
-                                                    email VARCHAR(50),
+                                                    email VARCHAR(50) UNIQUE,
                                                     reg_Date DATE,
                                                     mobile_no VARCHAR(10),
                                                     usr_password  VARCHAR(128) 
