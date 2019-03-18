@@ -14,7 +14,7 @@
         $dbname="User_info";    
         $dsn="mysql:host=$servername;dbname=$dbname";
         
-        $emailErr= $email= $password= $passwordErr= "";
+        $emailErr= $email= $usr_pass= $usr_pass= "";
         
         
         
@@ -40,6 +40,11 @@
                         }
                 }
             }
+            
+
+            if(empty($_POST["usr_pass"]))
+        
+        
         }
 
 
