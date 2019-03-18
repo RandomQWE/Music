@@ -30,35 +30,26 @@
 
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
-            if (empty($_POST["email"]))
-                $emailErr="Email is required";
-            else
-            {
-                $email=test_input($_POST["email"]);
-                    if(!filter_var($email,FILTER_VALIDATE_EMAIL))
-                        {
-                            $emailErr="Invalid format";
-                        }
-                
-            }
-            
-
-            if(empty($_POST["usr_pass"])){
-                $usr_passErr="Password is required";
-            }
-            else
-            {
-                $usr_pass=test_input($_POST["usr_pass"]);
-            }
-            
+        if (empty($_POST["email"]))
+            $emailErr="Email is required";
+        else
+        {
+            $email=test_input($_POST["email"]);
+            if(!filter_var($email,FILTER_VALIDATE_EMAIL))
+                {
+                    $emailErr="Invalid format";
+                }
+         
+        }
         
         
-        
-        
-        
-        
-        
-        
+        if(empty($_POST["usr_pass"])){
+            $usr_passErr="Password is required";
+        }
+        else{   
+            $usr_pass=test_input($_POST["usr_pass"]);
+        }
+                   
         
         if(empty($usr_passErr) && empty($emailErr))
         {
