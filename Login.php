@@ -67,7 +67,7 @@
                 {
                     $stmt->bindParam(":email",$param_email,PDO::PARAM_STR);
 
-                    $param_email=trim($_POST["username"]);
+                    $param_email=trim($_POST["email"]);
 
                     if($stmt->execute())
                         {
