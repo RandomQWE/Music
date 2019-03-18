@@ -88,9 +88,12 @@
                                                 
                                                 }
                                     }
+                                        else{
+                                            $usr_passErr="Password is incorect";
+                                        }
                                 }
                             else{
-                                $usr_passErr="Password is not valid";
+                                $email="No email Address registered";
                             }    
                         }
 
