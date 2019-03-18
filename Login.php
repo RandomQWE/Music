@@ -1,7 +1,7 @@
 <?php
     session_start();
     $title="login";
-    include 'header.php'
+    include 'header.php';
     
     
     
@@ -27,18 +27,18 @@
             $data=htmlspecialchars($data);
         }
 
-        if ($_SERVER["REQUEST_METHOD"]=="POST"){
+    if ($_SERVER["REQUEST_METHOD"]=="POST"){
 
             if (empty($_POST["email"]))
                 $emailErr="Email is required";
             else
             {
-                $email=test_input($_POST["email"]){
+                $email=test_input($_POST["email"]);
                     if(!filter_var($email,FILTER_VALIDATE_EMAIL))
                         {
                             $emailErr="Invalid format";
                         }
-                }
+                
             }
             
 
@@ -59,7 +59,7 @@
         
         
         
-        if(empty($usr_passErr))&&empty($emailErr)){
+        if(empty($usr_passErr) && empty($emailErr)){
             $sql="SELECT id ,usr_password,email FROM User_info WHERE email=:email ";
 
             if($stmt=$con->prepare($sql))
@@ -72,7 +72,7 @@
                         {
                             if($stmt->rowCount()== 1)
                                 {
-                                        if($row=$stmt->fetch(){
+                                        if($row=$stmt->fetch()){
                                             $id=$row["id"];
                                             $email=$row["email"];
                                             $hashed_password=$row["usr_password"];
@@ -103,10 +103,10 @@
         }
 
         unset($con);
+    }
 
 
-
-    ?>
+?>
 <!DOCTYPE html>
 <html>
    
@@ -142,7 +142,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             resize: vertical;
-            margin-left:50px;
+            margin-left:80px;
             
             }
             
@@ -188,11 +188,11 @@
 
     <body>
         <div class="b">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> method="POST">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <fieldset class="logon_font">
                 <div class="a">
-                    <label for="username">Username</label>
-                    <input name="username" id="username" type="email" placeholder="Enter username or email Address" required >
+                    <label for="email">Email</label>
+                    <input name="email" id="email" type="email" placeholder="Enter email Address" required >
                     <span class="error">*<?php echo $emailErr;?></span>
                 </div>
                 <div>
@@ -201,9 +201,15 @@
                 <span class="error">*<?php echo $usr_passErr ;?></span>
                 </div>        
                 <input type="submit" value="Login">   
-                </div> 
+                </div>
+                <div>
+                <p>Don't have an account? <a href="register.php">Sign up now</a>.</p> 
+                </div>
         </div>
     
     </body>
-<?php include 'footer.php'
+
+</html>
+
+<?php include 'footer.php';
 ?>
