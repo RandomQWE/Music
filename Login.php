@@ -112,7 +112,7 @@
                
                 border-radius: 30px;
                 border-style:solid;
-                width:800px;
+                width:1000px;
             }
             .b{
             background-image:url(./images/music.jpg);
