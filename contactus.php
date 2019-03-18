@@ -83,11 +83,5 @@ function test_input($data) {
 
   <input type="submit" name="submit" value="Submit">  
 </form>
-
-<?php
-echo $email;
-?>
-
-
 </body>
 </html>
