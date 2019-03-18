@@ -21,6 +21,7 @@ function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
+    return $data;
 }
 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -38,7 +39,7 @@ function test_input($data) {
       } 
       else {
         $email = test_input($_POST["email"]);
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                       $emailErr = "Invalid email format"; 
                 }
       }
@@ -71,7 +72,7 @@ function test_input($data) {
   Name: <input type="text" name="name" value="<?php echo $name;?>">
   <span class="error">* <?php echo $nameErr;?></span>
   <br><br>
-  E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+  E-mail: <input type="email" name="email" value="<?php echo $email;?>">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
   Website: <input type="text" name="website" value="<?php echo $website;?>">
