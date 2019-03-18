@@ -6,21 +6,21 @@
     
     
     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]===true){
-            header("location:welcome.php");
+            header("location:header.php");
             exit;
     }
-        $servername="localhost";
-        $username="root";
-        $password="";
-        $dbname="User_info";    
-        $dsn="mysql:host=$servername;dbname=$dbname";
+    $servername="localhost";
+    $username="root";
+    $password="";
+    $dbname="User_info";    
+    $dsn="mysql:host=$servername;dbname=$dbname";
         
-        $emailErr= $email= $usr_pass= $usr_passErr= "";
+    $emailErr= $email= $usr_pass= $usr_passErr= "";
         
         
-        $con=new PDO($dsn,$username,$password);
+    $con=new PDO($dsn,$username,$password);
 
-        function test_input($data)
+    function test_input($data)
         {
             $data=trim($data);
             $data=stripslashes($data);
@@ -60,8 +60,9 @@
         
         
         
-        if(empty($usr_passErr) && empty($emailErr)){
-            $sql="SELECT id ,usr_password,email FROM User_info WHERE email=:email ";
+        if(empty($usr_passErr) && empty($emailErr))
+        {
+            $sql="SELECT id ,usr_password,email FROM User_info WHERE email= :email ";
 
             if($stmt=$con->prepare($sql))
                 {
@@ -88,13 +89,14 @@
                                                     header("location: welcome.php");
                                                 
                                                 }
-                                    }
-                                        else{
+                                    
+                                            else{
                                             $usr_passErr="Password is incorect";
+                                            }
                                         }
                                 }
                             else{
-                                $email="No email Address registered";
+                                $emailErr="No email Address registered";
                             }    
                         }
 
